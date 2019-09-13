@@ -5,5 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+5.times do
+  Survivor.create({
+    name: Faker::Games::Pokemon.name,
+    gender: Faker::Gender.type,
+    age: Faker::Number.between(from: 0, to: 100),
+    status: Faker::Boolean.boolean
+  })
+end
 
