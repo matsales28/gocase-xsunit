@@ -4,7 +4,7 @@ class CreateSurvivors < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :gender
       t.integer :age
-
+      
       t.timestamps
     end
   end

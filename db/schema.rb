@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_13_171843) do
+ActiveRecord::Schema.define(version: 2019_09_14_190014) do
+
+  create_table "locations", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+    t.decimal "latitude", precision: 10, scale: 6
+    t.decimal "longitude", precision: 10, scale: 6
+    t.bigint "survivor_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["survivor_id"], name: "index_locations_on_survivor_id"
+  end
 
   create_table "survivors", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
@@ -21,4 +30,5 @@ ActiveRecord::Schema.define(version: 2019_09_13_171843) do
     t.boolean "status"
   end
 
+  add_foreign_key "locations", "survivors"
 end
