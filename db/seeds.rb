@@ -9,25 +9,34 @@ def randomGender
     return "T"
   end
 end
-
+#Params to grab random values beetwen negative and positive value
 def locationParams(location)
   return rand(-location .. location)
 end
 
+#For seedig the survivor_id
 @counter = 1
 
-10.times do
+#How many seeds do you want to
+@quantidade = 10
+
+@quantidade.times do
   Survivor.create({
     name: Faker::Games::Pokemon.name,
     gender: randomGender,
     age: Faker::Number.between(from: 0, to: 100),
-    status: Faker::Boolean.boolean,
+    status: false,
   })
 
   Location.create({
     latitude: locationParams(90),
     longitude: locationParams(180),
     survivor_id: @counter
+  })
+
+  Flag.create({
+    flagger_id: rand(@quantidade-1)+1,
+    survivor_id: rand(@quantidade-1)+1
   })
   @counter += 1
 end

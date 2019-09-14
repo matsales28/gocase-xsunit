@@ -1,5 +1,6 @@
 class Survivor < ApplicationRecord
   has_one :location, dependent: :destroy
+  has_many :flag, dependent: :destroy
 
   ## Validation of the input data
   validates :name, presence: true, length: { minimum:2 }
