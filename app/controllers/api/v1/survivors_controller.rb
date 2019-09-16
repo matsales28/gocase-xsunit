@@ -1,16 +1,31 @@
+require_relative 'side_functions'
 module Api
     module V1
       class SurvivorsController < ApplicationController
-  
+        
+
+        #Show all the survivor in alphabetic order
         def index
             survivors = Survivor.order('name ASC')
             render json: {
                 status: 'SUCCESS',
                 data: survivors
-            }, status: :ok
+            }, status: 200
             
         end
         
+        #Show a single survivor passing the ID
+        def show 
+        survivor = Survivor.find(params[:id])
+        status = 'SUCCESS'
+        data = { 
+          survivor: survivor,
+          condition: testing_safe_or_not
+        }
+        code = 200
+        
+        renderOutput(status,data,code)
+        end
 
         def create
           survivor = Survivor.new(survivor_params)
@@ -21,19 +36,10 @@ module Api
               survivorLocation: survivor.location
             }
           end
-          statusCode = 400
-          render json: {
-            status: status,
-            data: data
-          }, status:statusCode
+          code = 400
+          renderOutput(status,data,code)
           
         end
-        
-        private 
-        def survivor_params
-          params.permit(:name, :age,:gender)
-        end
-
       end
     end
   end

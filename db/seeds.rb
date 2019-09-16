@@ -1,14 +1,13 @@
 ## Method to generate a randomGender between Male, Female or Trans
 def randomGender
-  randomNumber = Faker::Number.between(from: 0, to: 15)
+  randomNumber = Faker::Number.between(from: 0, to: 10)
   if randomNumber <= 5
     return "M"
-  elsif randomNumber <=10
-    return "F"
   else
-    return "T"
+    return "F"
   end
 end
+
 #Params to grab random values beetwen negative and positive value
 def locationParams(location)
   return rand(-location .. location)
@@ -18,7 +17,7 @@ end
 @counter = 1
 
 #How many seeds do you want to
-@quantidade = 10
+@quantidade = 20
 
 @quantidade.times do
   Survivor.create({
@@ -41,3 +40,11 @@ end
   @counter += 1
 end
 
+
+# Updating the database generated
+for i in 1..@quantidade 
+numberOfFlags = Flag.where(survivor_id: i).count
+  if numberOfFlags >= 3
+    Survivor.update(i,:status => false)
+  end
+end
