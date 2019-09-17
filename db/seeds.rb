@@ -16,10 +16,13 @@ end
 #For seedig the survivor_id
 @counter = 1
 
-#How many seeds do you want to
-@quantidade = 20
+#How many survivors do you want to
+@quantityOfSurvivors = 20
 
-@quantidade.times do
+#How many flaggs do you want
+@quantityOfFlags = 40
+
+@quantityOfSurvivors.times do
   Survivor.create({
     name: Faker::Games::Pokemon.name,
     gender: randomGender,
@@ -33,18 +36,25 @@ end
     survivor_id: @counter
   })
 
-  Flag.create({
-    flagger_id: rand(@quantidade-1)+1,
-    survivor_id: rand(@quantidade-1)+1
-  })
   @counter += 1
+end
+
+@quantityOfFlags.times do
+  flaggerId = Faker::Number.within(range: 1..@quantityOfSurvivors)
+  survivorId = Faker::Number.within(range: 1..@quantityOfSurvivors)
+  if flaggerId != survivorId 
+  Flag.create({
+    flagger_id: flaggerId,
+    survivor_id: survivorId
+  })
+  end
 end
 
 
 # Updating the database generated
-for i in 1..@quantidade 
+for i in 1..@quantityOfSurvivors 
 numberOfFlags = Flag.where(survivor_id: i).count
   if numberOfFlags >= 3
-    Survivor.update(i,:status => false)
+    Survivor.update(i,:status => true)
   end
 end

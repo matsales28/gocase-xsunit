@@ -5,6 +5,7 @@ Rails.application.routes.draw do
         resource :location, only: [:show, :update]
         resources :flags, only: [:create]
       end
+      get '/reports' => 'survivors#reports'
     end
   end
 end
