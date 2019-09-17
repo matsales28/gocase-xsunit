@@ -21,7 +21,7 @@ module Api
         status = 'SUCCESS'
         data = { 
           survivor: survivor,
-          condition: testing_safe_or_not
+          condition: testingSafeOrNot
         }
         code = 200
         
@@ -42,7 +42,7 @@ module Api
           renderOutput(status,data,code)
         end
 
-        # Destroy a specific survivor data(RIP)
+        # Destroy a specific survivor data(RIP) 
         def destroy
           survivor = Survivor.find(params[:id])
           if survivor.destroy
@@ -61,18 +61,15 @@ module Api
           renderOutput(status,data,code)
         end
 
-        # Get reports from survivor db
+        # Get reports from survivor db, using side_functions.rb
         def reports
-          @survivorsAbducted = Survivor.abducted.size
-          @survivorsSafe = Survivor.safe.size
-          @totalSurvivors = @survivorsAbducted+@survivorsSafe
-          @percentageOfAbductedSurvivors = (@survivorsSafe*100/@totalSurvivors).to_f.round(2)
           status = 'SUCCESS'
           data = {
-            survivors: @percentageOfAbductedSurvivors
+            'Abducted Survivors (%)': abductedPercentage,
+            'Safe Survivors (%)': safePercentage,
+            'List of Survivors': survivorsAndStatusOrderedAlphabetical
           }
           code = 200
-
           renderOutput(status,data,code)
         end
       end

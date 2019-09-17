@@ -23,13 +23,14 @@ def renderOutput(status,data,code)
 end
 
 #Function to test if survivor is safe or abducted
-def testing_safe_or_not
-  condition = Survivor.safe
-  if condition =! nil
-  @teste = "Safe"
+def testingSafeOrNot
+  condition = Survivor.find(params[:id]) 
+  if condition.status == false
+    @teste = "Safe"
   else
-  @teste = "Abducted"
+    @teste = "Abducted"
   end
+  return @teste
 end
 
 
@@ -47,4 +48,35 @@ def validateTheFlag(survivor, flagger)
     message = 'Flag reported'
   end
   return {status: status, message: message}
+end
+
+
+##Functions used on GET /api/v1/reports
+
+#Function to get the percentage of Abducted Survivors
+def abductedPercentage
+  @survivorsAbducted = Survivor.abducted.size
+  @survivorsSafe = Survivor.safe.size
+  @totalSurvivors = @survivorsAbducted + @survivorsSafe
+  @percentageOfAbductedSurvivors = (@survivorsAbducted*100/@totalSurvivors).to_f.round(2)
+  return @percentageOfAbductedSurvivors
+end
+
+#Function to get the percentage of Safe Survivors
+def safePercentage
+  return 100 - abductedPercentage
+end
+
+
+def survivorsAndStatusOrderedAlphabetical
+  survivorsOrdered = Survivor.order('name ASC')
+  survivorsAndStatusArray = survivorsOrdered.pluck(:name,:status)
+  for i in 0..survivorsAndStatusArray.length-1
+    if survivorsAndStatusArray[i][1] == false
+      survivorsAndStatusArray[i][1] = "Safe"
+    else
+      survivorsAndStatusArray[i][1] = "Abducted" 
+    end
+  end
+  return survivorsAndStatusArray
 end
