@@ -9,14 +9,15 @@ module Api
         if validator[:status]
           flag = Flag.new(flag_params)
           flag.save
-          flagCount = Flag.where(survivor_id: params[:id] ).count
+          flagCount = Flag.where(survivor_id: survivor.id).size 
           if flagCount >= 3
-          Survivor.update(:status => true)
+          survivor.update(:status => true)
           end
           status = 'SUCCESS'
           data = {
             message: validator[:message],
-            flag: flag
+            flag: flag,
+            flagCount:flagCount
           }
           code = 200
         else
