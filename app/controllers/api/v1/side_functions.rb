@@ -47,7 +47,7 @@ def validateTheFlag(survivor, flagger)
     conditionToValidate = true
     message = 'Flag reported'
   end
-  return {status: status, message: message}
+  return {status: conditionToValidate, message: message}
 end
 
 

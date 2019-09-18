@@ -18,13 +18,13 @@ module Api
 			def update
         survivor = Survivor.find(params[:survivor_id])
 				if survivor.location.update(location_params)
-					status = 'SUCCESS',
+					status = 'SUCCESS'
 					data = {
 						location: survivor.location
 					}
           code = 200
 				else
-					status = 'ERROR',
+					status = 'ERROR'
 					data{
 						message:"Could not update survivor location"
 					}
