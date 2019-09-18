@@ -2,6 +2,8 @@ require_relative 'side_functions'
 module Api
   module V1
     class FlagsController < ApplicationController
+
+      # Method to create a flag report
       def create
         survivor = Survivor.find(params[:survivor_id])
         flagger = Survivor.find(params[:flagger_id])

@@ -13,7 +13,7 @@ def flag_params
 end
 
 
-#Render the output
+# Render the output
 
 def renderOutput(status,data,code)
   render json: {
@@ -22,7 +22,7 @@ def renderOutput(status,data,code)
   }, status: code
 end
 
-#Function to test if survivor is safe or abducted
+# Function to test if survivor is safe or abducted
 def testingSafeOrNot
   condition = Survivor.find(params[:id]) 
   if condition.status == false
@@ -34,7 +34,7 @@ def testingSafeOrNot
 end
 
 
-#Function to validate or not a flag
+# Function to validate or not a flag
 def validateTheFlag(survivor, flagger)
   conditionToValidate = false
   if survivor == flagger
@@ -53,7 +53,7 @@ end
 
 ##Functions used on GET /api/v1/reports
 
-#Function to get the percentage of Abducted Survivors
+# Function to get the percentage of Abducted Survivors
 def abductedPercentage
   @survivorsAbducted = Survivor.abducted.size
   @survivorsSafe = Survivor.safe.size
@@ -62,12 +62,12 @@ def abductedPercentage
   return @percentageOfAbductedSurvivors
 end
 
-#Function to get the percentage of Safe Survivors
+# Function to get the percentage of Safe Survivors
 def safePercentage
   return 100 - abductedPercentage
 end
 
-
+# Function to get the survivors and status in an array
 def survivorsAndStatusOrderedAlphabetical
   survivorsOrdered = Survivor.order('name ASC')
   survivorsAndStatusArray = survivorsOrdered.pluck(:name,:status)
