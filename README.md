@@ -57,14 +57,6 @@ Help the pokemons, fast!!!
 
 Yeah, it was my first time doing the two things above, never ever had did a API REST and never ever had contact with Ruby. It was a true challenge for me to did this project, but finishing it makes me so proud of what I have accomplished in just 10 days of practice, hard work, and study(and some hours lost of sleep).
 
-
-## What did I do?
-
-I create an API REST that renders the output as json. It currently contains the v1 of the api, future releases may are coming!
-I developed 3 models, one for the survivors, one for the location and one for the flags. Using the methods belongs_to,has_many and has_one , it was quite easy to establish the relation one to many association, between the survivors/flags and the one to one association between survivors/location.
-
-
-
 ### Conditions to abduction
 
 To flag a survivor as abducted, it's necessary a survivor and a flagger id. There are a few moments that you can't flag a survivor as abducted.
