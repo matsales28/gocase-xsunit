@@ -39,7 +39,7 @@ Help the pokemons, fast!!!
 
     $ bundle install
 
-3. Create a new schema called xsunit or change [database.yml](config/database.yml)) to your database:
+3. Create a new schema called xsunit or change [database.yml](config/database.yml) to your database:
 
 4. Run migrations
 
@@ -67,8 +67,7 @@ I developed 3 models, one for the survivors, one for the location and one for th
 
 ### Conditions to abduction
 
-To flag a survivor as abducted, it's necessary a survivor and a flagger id. There are a few moments that you can't flag a survivor as abducted. [abduction_reports_controller.rb](app/controllers/api/v1/abduction_reports_controller.rb)):
-
+To flag a survivor as abducted, it's necessary a survivor and a flagger id. There are a few moments that you can't flag a survivor as abducted.
 1. When the survivor_id and the flagger_id are equals.(Are you an alien? Or an crazy pokemon?)
 2. When an abducted survivor tries to flag another survivor.(I am really thinking you are an alien.)
 3. When you try to report the same flag twice.(Ok,ok you are just a crazy pokemon.)
@@ -84,6 +83,6 @@ All the documentation can be see at this Postman collection [here](https://docum
 
 
 # To improve
-Implement auth
-Track some dangerous locations to help the survivors pokemons
-Better refactor and modularization of the code
+1. Implement auth
+2. Track some dangerous locations to help the survivors pokemons
+3. Better refactor and modularization of the code
