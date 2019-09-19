@@ -1,5 +1,6 @@
 
-#Params functions
+# Params functions
+######################################################
 def location_params
   params.permit(:latitude, :longitude)
 end
@@ -11,18 +12,19 @@ end
 def flag_params
   return params.permit(:survivor_id,:flagger_id)
 end
-
+#####################################################
 
 # Render the output
 
 def renderOutput(status,data,code)
   render json: {
-      status: status,
-      data: data
+    status: status,
+    data: data
   }, status: code
 end
 
 # Function to test if survivor is safe or abducted
+
 def testingSafeOrNot
   condition = Survivor.find(params[:id]) 
   if condition.status == false
