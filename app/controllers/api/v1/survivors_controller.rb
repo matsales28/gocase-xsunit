@@ -38,7 +38,7 @@ module Api
           survivorLocation: survivor.location
           }
         end
-        code = 400
+        code = 200
         renderOutput(status,data,code)
       end
 

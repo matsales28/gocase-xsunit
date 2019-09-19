@@ -71,7 +71,7 @@ Also check [flags_controller.rb](app/controllers/api/v1/flags_controller.rb) for
 
 # Documentation
 
-All the documentation can be see at this Postman collection [here](https://documenter.getpostman.com/view/8462018/SVmwuxE9?version=latest)
+All the documentation can be see at [this](https://documenter.getpostman.com/view/8462018/SVmwuxE9?version=latest) Postman collection.
 
 
 # To improve
